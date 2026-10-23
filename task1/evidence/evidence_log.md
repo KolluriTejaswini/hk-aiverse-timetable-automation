@@ -1,0 +1,19 @@
+# Evidence log (dated; labelled Observed / Estimate / Assumption)
+
+No names, IDs, marks, fees or private messages are recorded. Raw college files are not committed.
+
+| ID | Date | Label | Statement | How obtained | Where |
+|---|---|---|---|---|---|
+| E01 | 2026-10-24 | Observed | Master timetable file (named 29_08_2024_5PM) has one sheet 'Master': one row per course-section with code, title, L-T-P-C, section, room, days, session numbers, instructor. | Own review of file supplied by student | Master_29_08_2024_5PM.xlsx (kept private, not in repo) |
+| E02 | 2026-10-24 | Observed | Section timetables file (named 29 Aug 2024) has 3 sheets (Second/Third/Final year): per-section grids Mon-Fri x S1-S9, S5 = LUNCH, with a course-faculty legend beside each grid. | Own review | Timetable_All_years_29August2024.xlsx (private) |
+| E03 | 2026-10-24 | Observed | Individual faculty timetable file has 3 sheets (CSE_DSAI, ECE, Humanities). | Own review | Individual_29_08_2024_5PM.xlsx (private) |
+| E04 | 2026-10-24 | Observed | Lab-slot file for odd semester 2025-2026 has 8 lab-room grids (Mon-Fri x S1-S9) with only 18 filled cells; lab blocks are written as pairs of slots. | Own review | Lab_Slots_for_odd_semester_2025-2026.xlsx (private) |
+| E05 | 2026-10-24 | Observed (approximate count) | Master sheet holds about 234 course-section rows, 50 distinct course codes and 19 year/programme header blocks. Count may include repeated or superseded blocks. | Script count of rows starting 'Section'; not de-duplicated | Master sheet |
+| E06 | 2026-10-24 | Observed | Data-entry inconsistency in Master: one days field reads 'M,M, Th' (a repeated day) and room codes appear as 'R-221 ' and 'R- 312' with stray spaces, so lookups and checks must be tolerant of formatting. | Master sheet, section row for OOP (days column) and room column | Master sheet rows 13-30 |
+| E07 | 2026-10-24 | Observed | File names carry dates 29 Aug 2024 and 2025-2026, i.e. versions exist for different semesters; the work is repeated every semester. | File names | all four files |
+| E08 | 2026-10-24 | Reported by student (not yet confirmed) | Process: HoD fixes semester subjects and faculty -> sections given at registration -> rooms allotted from seats and strength -> master + odd-sem timetable drafted -> individual faculty timetables -> clash check -> revise if clashes. Done manually by 2 faculty. | Student's own account of the process | student statement |
+| E09 | 2026-10-24 | Reported by student (not yet confirmed) | Rules: labs for all years and sections placed first using available labs; industry faculty come on fixed days so their classes go first; HoDs do rounds in the first hour so no class in S1 for them; each faculty gets 16-18 h/week. | Student's own account | student statement |
+| E10 | TO DO - add date | Estimate | How many hours the 2 faculty spend per semester on (a) inputs, (b) drafting, (c) individual timetables, (d) clash-check and revision rounds. Replace the placeholders in calculations/time_assumptions.csv. | Short voluntary conversation with the coordinators | pending |
+| E11 | TO DO - add date | Observed | Written/verbal permission from the coordinating faculty to study the process. Record only 'permission given on <date>' - no names. | Permission | pending |
+| E12 | 2026-10-24 | Assumption | Prototype scope = 1 year, 6 sections, 8 subjects, 9 faculty (1 HoD, 1 industry), 6 classrooms, 3 labs, all synthetic. | Design decision to fit the deadline | docs/limitations.md |
+| E13 | 2026-10-24 | Assumption | Industry faculty are exempt from the 16-18 h rule; max 6 periods/day for sections and for faculty; theory subject max once a day per section. | Design decision - confirm with HoD | data/synthetic_input.xlsx Rules sheet |

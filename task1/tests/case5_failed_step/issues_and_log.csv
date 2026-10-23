@@ -1,0 +1,4 @@
+level,code,detail
+DIAGNOSTIC,FACULTY_OVERLOADED_FOR_DAYS,F09 needs 12 periods but only 8 slots exist on allowed days ['Tue'].
+DIAGNOSTIC,NOT_ENOUGH_LAB_PAIRS,F09 needs 6 two-hour lab blocks but only 4 block slots exist on allowed days ['Tue'].
+DIAGNOSTIC,DAILY_LIMIT_EXCEEDED,F09 needs 12 periods but daily limit allows 6.

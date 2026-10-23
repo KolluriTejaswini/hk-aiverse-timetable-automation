@@ -1,0 +1,2 @@
+level,code,detail
+REJECTED,UNAUTHORIZED_REQUEST,CR-1: 'ALLOW_HOD_FIRST_HOUR' on F01 requested by Faculty member but approved_by='Self' (only HoD may approve). Ignored.

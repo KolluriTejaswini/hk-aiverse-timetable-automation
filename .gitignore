@@ -1,0 +1,9 @@
+private/
+uploads/
+*real*.xlsx
+Timetable_All_years*
+Master_*
+Individual_*
+Lab_Slots_*
+*.pdf
+__pycache__/

@@ -1,0 +1,10 @@
+item,side,hours_per_semester,label,basis
+Collect subjects/faculty/sections and allot rooms,manual,6,ASSUMPTION,PLACEHOLDER - replace with the figure the 2 coordinating faculty give you
+Draft master + odd-semester timetable (labs and industry faculty first),manual,24,ASSUMPTION,PLACEHOLDER - replace
+Derive individual faculty timetables,manual,12,ASSUMPTION,PLACEHOLDER - replace
+Clash check + revision rounds (3 rounds x 6 h),manual,18,ASSUMPTION,PLACEHOLDER - replace (rounds x hours per round)
+Fill the 7-sheet input workbook,tool,5,ASSUMPTION,estimate: data already exists in HoD allocation; mostly copy-paste
+Run generator + validator,tool,0.1,OBSERVED,measured: about 2 s for the synthetic 6-section case on 24 Oct 2026 (see tests/)
+Human review of draft + fix exceptions (HoD/coordinator),tool,8,ASSUMPTION,deliberately generous - the validator does not replace human sign-off
+Support effort (rule changes; data fixes; helping staff),tool,6,ASSUMPTION,per semester
+One-time setup/training (amortised),tool,3.33,ASSUMPTION,20 h one-time / 6 semesters

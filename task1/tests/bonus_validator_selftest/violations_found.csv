@@ -1,0 +1,10 @@
+check,severity,detail
+FACULTY_CLASH,ERROR,F01 has 2 bookings on Mon P3: A/TOC; B/IOT
+SECTION_CLASH,ERROR,A has 2 bookings on Mon P3: A/TOC; A/DAA
+SECTION_CLASH,ERROR,A has 2 bookings on Wed P6: A/PS1; A/IOT
+SECTION_CLASH,ERROR,A has 2 bookings on Wed P7: A/PS1; A/DM
+ROOM_CLASH,ERROR,R-101 has 2 bookings on Mon P3: A/TOC; A/DAA
+HOD_FIRST_HOUR,ERROR,F01 teaches C/IOT on Fri P1
+FACULTY_DAY_NOT_ALLOWED,ERROR,"F09 on Wed (allowed ['Tue', 'Thu']) A/PS1"
+FACULTY_DAY_NOT_ALLOWED,ERROR,"F09 on Wed (allowed ['Tue', 'Thu']) A/PS1"
+SECTION_DAILY_LIMIT,ERROR,section A has 7 periods on Wed

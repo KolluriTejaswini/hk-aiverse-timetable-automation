@@ -1,0 +1,3 @@
+level,code,detail
+ERROR,MISSING_FACULTY,section C / DAA: no faculty assigned.
+WARNING,WORKLOAD_OUT_OF_RANGE,F03 assigned 15 h/week; target 16-18. HoD may rebalance.
