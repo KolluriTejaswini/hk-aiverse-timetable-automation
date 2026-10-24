@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credit calculator: B.Tech AI, 2023 batch</title>
+<style>
+:root{
+  --bg:#f2f4f1; --panel:#ffffff; --ink:#1c2b39; --muted:#58677a; --line:#d5dbd6;
+  --keep:#58677a; --update:#255f9e; --reduce:#9a5b00; --add:#1f7a4d;
+  --keep-bg:#e8ecef; --update-bg:#dfeaf6; --reduce-bg:#f8e9cf; --add-bg:#dcf1e5;
+  --band:#c9e3d3; --warn:#a33a2c; --focus:#1c6fd1;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10171e; --panel:#18222c; --ink:#e6ecf1; --muted:#9fb0c0; --line:#2b3947;
+    --keep:#a9b6c3; --update:#8ab8ee; --reduce:#e6b45e; --add:#7fd2a4;
+    --keep-bg:#27333f; --update-bg:#1b2f45; --reduce-bg:#3d3018; --add-bg:#183a29;
+    --band:#21503a; --warn:#f19a8c; --focus:#7db5f5;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-variant-numeric:tabular-nums}
+h1,h2,.big{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600;letter-spacing:-.01em}
+header{padding:28px clamp(16px,4vw,48px) 8px;max-width:1280px;margin:0 auto}
+h1{font-size:clamp(24px,3.2vw,34px);margin:0 0 6px;line-height:1.15}
+header p{margin:0;color:var(--muted);max-width:68ch}
+main{display:grid;grid-template-columns:minmax(300px,360px) minmax(0,1fr);gap:28px;padding:20px clamp(16px,4vw,48px) 48px;max-width:1280px;margin:0 auto;align-items:start}
+@media (max-width:900px){main{grid-template-columns:minmax(0,1fr)}}
+aside,section{min-width:0}
+aside{position:sticky;top:12px;display:grid;gap:22px}
+@media (max-width:900px){aside{position:static}}
+.sec{border-left:3px solid var(--ink);padding:2px 0 2px 14px}
+.sec h2{font-size:15px;margin:0 0 6px;color:var(--muted);font-family:system-ui,sans-serif;font-weight:600;letter-spacing:0}
+.big{font-size:44px;line-height:1.05;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big small{font-size:15px;font-family:system-ui,sans-serif;font-weight:500;color:var(--muted)}
+.status{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:6px;font-size:13px;font-weight:600}
+.ok{background:var(--add-bg);color:var(--add)} .bad{background:var(--reduce-bg);color:var(--warn)}
+.gauge{position:relative;height:14px;background:var(--keep-bg);border-radius:6px;margin:12px 0 4px;overflow:hidden}
+.gauge .band{position:absolute;top:0;bottom:0;background:var(--band)}
+.gauge .mark{position:absolute;top:-2px;bottom:-2px;width:4px;background:var(--ink);border-radius:2px;transform:translateX(-2px)}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.bars{display:grid;gap:6px;margin-top:6px}
+.bar{display:grid;grid-template-columns:28px 1fr 74px;gap:8px;align-items:center;font-size:13px}
+.bar .tracks{display:grid;gap:2px}
+.bar .t{height:7px;border-radius:4px;background:var(--keep);opacity:.55}
+.bar .p{height:7px;border-radius:4px;background:var(--update)}
+.bar .n{text-align:right;color:var(--muted)}
+.bar.diff .n{color:var(--warn);font-weight:600}
+.legend{font-size:12px;color:var(--muted);display:flex;gap:14px;margin-top:8px}
+.legend i{display:inline-block;width:14px;height:7px;border-radius:4px;margin-right:5px;vertical-align:middle}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+label.f{display:grid;gap:2px;font-size:12px;color:var(--muted)}
+select,input[type=search]{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 8px;min-width:130px}
+button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:end}
+.count{font-size:13px;color:var(--muted);margin:2px 0 8px}
+.tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600;background:var(--panel);position:sticky;top:0}
+td.num,th.num{text-align:right}
+th,td:nth-child(1),td:nth-child(3),td:nth-child(4),td:nth-child(5){white-space:nowrap}
+tr.semrow td{background:var(--bg);font-family:"Iowan Old Style",Georgia,serif;font-weight:600;border-bottom:1px solid var(--line)}
+tr.off td{opacity:.55}
+.tag{display:inline-block;padding:1px 8px;border-radius:5px;font-size:12px;font-weight:700}
+.t-KEEP{background:var(--keep-bg);color:var(--keep)} .t-UPDATE{background:var(--update-bg);color:var(--update)}
+.t-REDUCE{background:var(--reduce-bg);color:var(--reduce)} .t-ADD{background:var(--add-bg);color:var(--add)}
+.sub{display:block;font-size:12px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin-top:14px;max-width:80ch}
+@media (prefers-reduced-motion:no-preference){.gauge .mark{transition:left .25s}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Credit calculator: B.Tech Artificial Intelligence, 2023 batch</h1>
+  <p>Switch each proposed change on or off and watch whether the programme still adds up to the handbook’s 165 credits and stays inside the 20–25% target. Source: IcfaiTech Student Handbook 2023–24, section 4.7.1. A student proposal, not an official revision.</p>
+</header>
+<main>
+  <aside aria-live="polite">
+    <div class="sec">
+      <h2>Programme total</h2>
+      <div class="big"><span id="totCur">165</span><span aria-hidden="true">→</span><span id="totProp">165</span><small>credits</small></div>
+      <span id="balance" class="status ok">Balanced</span>
+    </div>
+    <div class="sec">
+      <h2>Share of programme credits changed</h2>
+      <div class="big"><span id="pct">0%</span><small id="pctDetail"></small></div>
+      <div class="gauge" aria-hidden="true"><div class="band" id="band"></div><div class="mark" id="mark"></div></div>
+      <div class="scale" aria-hidden="true"><span>0%</span><span>20–25% target</span><span>40%</span></div>
+      <span id="pctStatus" class="status ok"></span>
+      <p class="note" id="breakdown"></p>
+    </div>
+    <div class="sec">
+      <h2>Credits by semester</h2>
+      <div class="bars" id="bars"></div>
+      <div class="legend"><span><i style="background:var(--keep);opacity:.55"></i>Handbook</span><span><i style="background:var(--update)"></i>Proposed</span></div>
+    </div>
+  </aside>
+  <section aria-label="Courses">
+    <div class="tools">
+      <label class="f">Semester<select id="fSem"></select></label>
+      <label class="f">Category<select id="fCat"></select></label>
+      <label class="f">Search<input id="fQ" type="search" placeholder="Code or title"></label>
+      <div class="chips" id="chips" role="group" aria-label="Show these change types"><span class="count" style="margin:0 4px 6px 0">Show:</span></div>
+      <button id="btnAll" type="button">Apply all changes</button>
+      <button id="btnNone" type="button">Clear all changes</button>
+    </div>
+    <p class="count" id="count"></p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Code</th><th>Course</th><th>L-T-P</th><th class="num">Handbook</th><th class="num">Proposed</th><th>Change</th><th>Apply</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="note">Sem VII and VIII are single 15-credit blocks in the handbook, so no changes are proposed there. The summer internship (3 credits) is listed but is not in the handbook’s 165. Course content was not checked against detailed syllabi: treat every “update” as a proposal to verify.</p>
+  </section>
+</main>
+<script>
+const DATA = __DATA__;
+const SEMS = {"1":"Semester I","2":"Semester II","3":"Semester III","4":"Semester IV","5":"Semester V","6":"Semester VI","7":"Semester VII","8":"Semester VIII","S":"Summer term"};
+const ROMAN = {"1":"I","2":"II","3":"III","4":"IV","5":"V","6":"VI","7":"VII","8":"VIII"};
+const TAGS = ["KEEP","UPDATE","REDUCE","ADD"];
+const TAGLABEL = {KEEP:"Keep",UPDATE:"Update",REDUCE:"Reduce",ADD:"Add"};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const on = {}; DATA.changes.forEach(c => on[c.id] = true);
+const f = {sem:"all", cat:"all", q:"", tags:new Set(TAGS)};
+const changeFor = {}; DATA.changes.forEach(c => { if (c.tag !== "ADD") changeFor[c.code] = c; });
+
+const rows = DATA.current.map(c => ({sem:c.sem, code:c.code, title:c.title, ltp:(c.L===""?"–":`${c.L}-${c.T}-${c.P}`), cur:+c.credits, cat:c.category, counted:c.counted_in_165==="Y", ch:changeFor[c.code]||null}));
+DATA.changes.filter(c => c.tag==="ADD").forEach(c => rows.push({sem:c.sem, code:c.code, title:c.title, ltp:c.new_ltp||"–", cur:0, cat:"New course", counted:true, ch:c}));
+rows.sort((a,b) => (a.sem==="S"?9:+a.sem) - (b.sem==="S"?9:+b.sem));
+
+const propCredits = r => !r.ch ? r.cur : (on[r.ch.id] ? +r.ch.new_credits : r.cur);
+const tagOf = r => (r.ch && on[r.ch.id]) ? r.ch.tag : "KEEP";
+
+function totals(){
+  const cur = {}, prop = {};
+  rows.filter(r => r.counted).forEach(r => { cur[r.sem]=(cur[r.sem]||0)+r.cur; prop[r.sem]=(prop[r.sem]||0)+propCredits(r); });
+  let upd=0, red=0, add=0;
+  DATA.changes.filter(c => on[c.id]).forEach(c => {
+    if (c.tag==="UPDATE") upd += +c.old_credits;
+    else if (c.tag==="REDUCE") red += (+c.old_credits - +c.new_credits);
+    else add += (+c.new_credits - +c.old_credits);
+  });
+  const sum = o => Object.values(o).reduce((a,b)=>a+b,0);
+  return {cur, prop, tc:sum(cur), tp:sum(prop), upd, red, add};
+}
+
+function renderSummary(){
+  const t = totals(), affected = t.upd+t.red+t.add, pct = affected / t.tc * 100;
+  document.getElementById("totCur").textContent = t.tc;
+  document.getElementById("totProp").textContent = t.tp;
+  const bal = document.getElementById("balance");
+  if (t.tp === t.tc){ bal.className="status ok"; bal.textContent="Balanced: total unchanged"; }
+  else { bal.className="status bad"; const d=t.tp-t.tc; bal.textContent = `Not balanced: ${Math.abs(d)} credit${Math.abs(d)>1?"s":""} ${d>0?"over":"short"} of the handbook total`; }
+  document.getElementById("pct").textContent = pct.toFixed(1)+"%";
+  document.getElementById("pctDetail").textContent = `${affected} of ${t.tc} credits`;
+  document.getElementById("band").style.left = (20/40*100)+"%"; document.getElementById("band").style.width = (5/40*100)+"%";
+  document.getElementById("mark").style.left = Math.min(pct,40)/40*100+"%";
+  const ps = document.getElementById("pctStatus");
+  if (pct>=20 && pct<=25){ ps.className="status ok"; ps.textContent="Inside the 20–25% target"; }
+  else { ps.className="status bad"; ps.textContent = pct<20 ? "Below the 20% target" : "Above the 25% target"; }
+  document.getElementById("breakdown").textContent = `Counted as: ${t.upd} credits in updated courses, plus ${t.red} credits removed, plus ${t.add} credits added.`;
+  const bars = document.getElementById("bars"); bars.innerHTML = "";
+  ["1","2","3","4","5","6","7","8"].forEach(s => {
+    const c=t.cur[s]||0, p=t.prop[s]||0, d = c!==p;
+    const el = document.createElement("div"); el.className = "bar"+(d?" diff":"");
+    el.innerHTML = `<span>${ROMAN[s]}</span><span class="tracks"><span class="t" style="width:${c/26*100}%"></span><span class="p" style="width:${p/26*100}%"></span></span><span class="n">${c} → ${p}</span>`;
+    el.title = `Semester ${ROMAN[s]}: handbook ${c}, proposed ${p}`;
+    bars.appendChild(el);
+  });
+}
+
+function renderTable(){
+  const q = f.q.trim().toLowerCase();
+  const vis = rows.filter(r => (f.sem==="all"||r.sem===f.sem) && (f.cat==="all"||r.cat===f.cat) && f.tags.has(tagOf(r)) && (!q || (r.code+" "+r.title).toLowerCase().includes(q)));
+  let html="", last=null, sc=0, sp=0;
+  vis.forEach(r => {
+    if (r.sem!==last){ last=r.sem; html += `<tr class="semrow"><td colspan="7">${SEMS[r.sem]}</td></tr>`; }
+    const tag=tagOf(r), p=propCredits(r), isOn = r.ch ? on[r.ch.id] : true;
+    if (r.counted){ sc+=r.cur; sp+=p; }
+    const pc = r.ch && isOn ? `${p}${r.cur===p?"":""}` : (r.ch&&r.ch.tag==="ADD" ? "0" : p);
+    const detail = r.ch ? `<span class="sub">${esc(r.ch.id)}: ${esc(r.ch.title)}${r.ch.reason_ids?` (reason ${esc(r.ch.reason_ids)})`:""}</span>` : "";
+    html += `<tr class="${r.ch&&!isOn?"off":""}"><td>${esc(r.code)}</td><td>${esc(r.title)}${r.sem==="S"?'<span class="sub">Not in the 165 total</span>':""}</td><td>${esc(r.ltp)}</td>`+
+      `<td class="num">${r.cur||"–"}</td><td class="num">${pc}</td><td><span class="tag t-${tag}">${TAGLABEL[tag]}</span>${detail}</td>`+
+      `<td>${r.ch?`<input type="checkbox" data-id="${esc(r.ch.id)}" ${isOn?"checked":""} aria-label="Apply change ${esc(r.ch.id)} to ${esc(r.code)}">`:""}</td></tr>`;
+  });
+  document.getElementById("rows").innerHTML = html || `<tr><td colspan="7">No courses match these filters. Clear the search or turn a change type back on.</td></tr>`;
+  document.getElementById("count").textContent = `Showing ${vis.length} course${vis.length===1?"":"s"}: ${sc} handbook credits, ${sp} proposed credits (summer term excluded).`;
+}
+
+function renderAll(){ renderSummary(); renderTable(); }
+
+// controls
+const selSem = document.getElementById("fSem");
+selSem.innerHTML = `<option value="all">All semesters</option>` + Object.keys(SEMS).map(k=>`<option value="${k}">${SEMS[k]}</option>`).join("");
+const cats = [...new Set(rows.map(r=>r.cat))].sort();
+document.getElementById("fCat").innerHTML = `<option value="all">All categories</option>` + cats.map(c=>`<option>${esc(c)}</option>`).join("");
+const chips = document.getElementById("chips");
+TAGS.forEach(t => { const b=document.createElement("button"); b.type="button"; b.className="chip"; b.setAttribute("aria-pressed","true"); b.textContent=TAGLABEL[t];
+  b.onclick=()=>{ f.tags.has(t)?f.tags.delete(t):f.tags.add(t); b.setAttribute("aria-pressed", f.tags.has(t)); renderTable(); }; chips.appendChild(b); });
+selSem.onchange = e => { f.sem=e.target.value; renderTable(); };
+document.getElementById("fCat").onchange = e => { f.cat=e.target.value; renderTable(); };
+document.getElementById("fQ").oninput = e => { f.q=e.target.value; renderTable(); };
+document.getElementById("rows").addEventListener("change", e => { if (e.target.dataset.id){ on[e.target.dataset.id]=e.target.checked; renderAll(); } });
+document.getElementById("btnAll").onclick = () => { DATA.changes.forEach(c=>on[c.id]=true); renderAll(); };
+document.getElementById("btnNone").onclick = () => { DATA.changes.forEach(c=>on[c.id]=false); renderAll(); };
+renderAll();
+</script>
+</body>
+</html>
