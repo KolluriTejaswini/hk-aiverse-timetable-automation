@@ -1,4 +1,4 @@
-id,date,label,statement,how_obtained,where
+﻿id,date,label,statement,how_obtained,where
 E01,2026-10-24,Observed,"Master timetable file (named 29_08_2024_5PM) has one sheet 'Master': one row per course-section with code, title, L-T-P-C, section, room, days, session numbers, instructor.",Own review of file supplied by student,"Master_29_08_2024_5PM.xlsx (kept private, not in repo)"
 E02,2026-10-24,Observed,"Section timetables file (named 29 Aug 2024) has 3 sheets (Second/Third/Final year): per-section grids Mon-Fri x S1-S9, S5 = LUNCH, with a course-faculty legend beside each grid.",Own review,Timetable_All_years_29August2024.xlsx (private)
 E03,2026-10-24,Observed,"Individual faculty timetable file has 3 sheets (CSE_DSAI, ECE, Humanities).",Own review,Individual_29_08_2024_5PM.xlsx (private)
@@ -9,6 +9,7 @@ E07,2026-10-24,Observed,"File names carry dates 29 Aug 2024 and 2025-2026, i.e. 
 E08,2026-10-24,Reported by student (not yet confirmed),Process: HoD fixes semester subjects and faculty -> sections given at registration -> rooms allotted from seats and strength -> master + odd-sem timetable drafted -> individual faculty timetables -> clash check -> revise if clashes. Done manually by 2 faculty.,Student's own account of the process,student statement
 E09,2026-10-24,Reported by student (not yet confirmed),Rules: labs for all years and sections placed first using available labs; industry faculty come on fixed days so their classes go first; HoDs do rounds in the first hour so no class in S1 for them; each faculty gets 16-18 h/week.,Student's own account,student statement
 E10,TO DO - add date,Estimate,"How many hours the 2 faculty spend per semester on (a) inputs, (b) drafting, (c) individual timetables, (d) clash-check and revision rounds. Replace the placeholders in calculations/time_assumptions.csv.",Short voluntary conversation with the coordinators,pending
-E11,TO DO - add date,Observed,Written/verbal permission from the coordinating faculty to study the process. Record only 'permission given on <date>' - no names.,Permission,pending
+E11,2026-10-22,Reported by student,"Permission to study the timetable process was obtained from both HODs.","Student's account of permission received","Permission date reported by student"
 E12,2026-10-24,Assumption,"Prototype scope = 1 year, 6 sections, 8 subjects, 9 faculty (1 HoD, 1 industry), 6 classrooms, 3 labs, all synthetic.",Design decision to fit the deadline,docs/limitations.md
 E13,2026-10-24,Assumption,Industry faculty are exempt from the 16-18 h rule; max 6 periods/day for sections and for faculty; theory subject max once a day per section.,Design decision - confirm with HoD,data/synthetic_input.xlsx Rules sheet
+

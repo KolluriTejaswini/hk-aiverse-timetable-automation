@@ -1,4 +1,4 @@
-# Evidence log (dated; labelled Observed / Estimate / Assumption)
+﻿# Evidence log (dated; labelled Observed / Estimate / Assumption)
 
 No names, IDs, marks, fees or private messages are recorded. Raw college files are not committed.
 
@@ -14,6 +14,7 @@ No names, IDs, marks, fees or private messages are recorded. Raw college files a
 | E08 | 2026-10-24 | Reported by student (not yet confirmed) | Process: HoD fixes semester subjects and faculty -> sections given at registration -> rooms allotted from seats and strength -> master + odd-sem timetable drafted -> individual faculty timetables -> clash check -> revise if clashes. Done manually by 2 faculty. | Student's own account of the process | student statement |
 | E09 | 2026-10-24 | Reported by student (not yet confirmed) | Rules: labs for all years and sections placed first using available labs; industry faculty come on fixed days so their classes go first; HoDs do rounds in the first hour so no class in S1 for them; each faculty gets 16-18 h/week. | Student's own account | student statement |
 | E10 | TO DO - add date | Estimate | How many hours the 2 faculty spend per semester on (a) inputs, (b) drafting, (c) individual timetables, (d) clash-check and revision rounds. Replace the placeholders in calculations/time_assumptions.csv. | Short voluntary conversation with the coordinators | pending |
-| E11 | TO DO - add date | Observed | Written/verbal permission from the coordinating faculty to study the process. Record only 'permission given on <date>' - no names. | Permission | pending |
+| E11 | 2026-10-22 | Reported by student | Permission to study the timetable process was obtained from both HODs. | Student's account of permission received | Permission date reported by student |
 | E12 | 2026-10-24 | Assumption | Prototype scope = 1 year, 6 sections, 8 subjects, 9 faculty (1 HoD, 1 industry), 6 classrooms, 3 labs, all synthetic. | Design decision to fit the deadline | docs/limitations.md |
 | E13 | 2026-10-24 | Assumption | Industry faculty are exempt from the 16-18 h rule; max 6 periods/day for sections and for faculty; theory subject max once a day per section. | Design decision - confirm with HoD | data/synthetic_input.xlsx Rules sheet |
+
