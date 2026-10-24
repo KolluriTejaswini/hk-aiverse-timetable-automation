@@ -28,3 +28,6 @@ This task reviews the B.Tech Artificial Intelligence curriculum, proposes course
 ## Reproducibility
 
 See each task's README for instructions and requirements.
+
+## Submission commit
+[Task 1 and Task 2 submission commit](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/cf5b4e3)
