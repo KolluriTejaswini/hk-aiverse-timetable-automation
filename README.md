@@ -29,10 +29,11 @@ This task reviews the B.Tech Artificial Intelligence curriculum, proposes course
 
 See each task's README for instructions and requirements.
 
-## Submission commit
-[Task 1 and Task 2 submission commit](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/cf5b4e3)
+## Latest repository update
+
+[Corrected Task 1 evidence log — commit 2e7c294](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/2e7c294)
 
 ## Final submission
 
 - **Release:** [HK AI VERSE Round 2 — v1.0.0](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/releases/tag/v1.0.0)
-- **Exact submission commit:** [8a5cb313f577e4035f897e242dbde0c9e7099f28](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/8a5cb313f577e4035f897e242dbde0c9e7099f28)
+- **Original submission snapshot:** [Commit 8a5cb313f577e4035f897e242dbde0c9e7099f28](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/8a5cb313f577e4035f897e242dbde0c9e7099f28)
