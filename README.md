@@ -1,39 +1,40 @@
-﻿# HK AI VERSE — Round 2 Assignment
+﻿# HK AI VERSE Round 2 â€” Submission
 
-This repository contains Task 1 and Task 2 of the HK AI VERSE Round 2 assignment.
+This repository contains two student proposals/prototypes. Neither document nor tool represents an official college process or approved curriculum change.
 
-## Task 1 — College Master Timetable Workflow
+## Task 1 â€” Master timetable preparation
+- [Task 1 overview and run instructions](task1/README.md)
+- [Current process and evidence labels](task1/docs/01_process_as_is.md)
+- [Evidence log](task1/evidence/evidence_log.md)
+- [Proposed workflow](task1/docs/03_proposed_process.md)
+- [Test plan and results](task1/docs/04_test_plan.md) Â· [Latest test results](task1/tests/test_results.md)
+- [Time-savings calculation and assumptions](task1/calculations/net_time_saved.md)
+- [Limitations](task1/docs/05_limitations.md)
+- [AI-use and contribution record](task1/docs/06_ai_use_and_contribution.md)
 
-See [Task 1 documentation](task1/README.md).
-
-This task documents the college master timetable preparation workflow, proposed automation, validation, testing, and limitations.
-
-## Task 2 — Curriculum Audit and Redesign Proposal
-
-See [Task 2 documentation](task2/README.md).
-
-This task reviews the B.Tech Artificial Intelligence curriculum, proposes course changes, compares job requirements, documents AI-assisted exercises, and provides a credit calculator.
-
-### Important notes
-
-- This is a student proposal, not an official curriculum revision.
-- The handbook has a discrepancy between the printed Semester III credit total and the sum of its listed courses. This needs confirmation.
-- AI exercise outputs, source URLs, and feedback must be documented honestly. Do not claim external feedback or verification that did not occur.
-
-## Project structure
-
-- `task1/` — Timetable workflow and automation.
-- `task2/` — Curriculum audit, redesign proposal, verification scripts, and calculator.
+## Task 2 â€” B.Tech Artificial Intelligence curriculum review
+- [Task 2 overview](task2/README.md)
+- [Curriculum map](task2/docs/01_curriculum_map.md)
+- [Reasons and job-description comparison](task2/docs/02_reasons_and_comparison.md)
+- [Proposed change table](task2/docs/02b_change_table.md)
+- [Credit-balance calculation](task2/calculations/credit_balance.md)
+- [Five AI-assisted exercises and verification scripts](task2/ai_exercises/exercise_log.md)
+- [Capstone proposal](task2/docs/03_capstone_proposal.md)
+- [Feedback request and record](task2/feedback/feedback_request.md)
+- [Interactive credit calculator](task2/tool/credit_calculator.html)
+- [Sources and job descriptions](task2/sources/handbook.md) Â· [Job-description notes](task2/sources/job_descriptions.md)
+- [Limitations, AI use, and contribution](task2/docs/04_limitations_and_ai_use.md)
 
 ## Reproducibility
+Run Task 1 from `task1/`: install `requirements.txt`, then run `python src/run_demo.py` and `python src/run_tests.py`. Run Task 2 credit checks from `task2/` with `python calculations/credit_balance.py`; run each verification script in `ai_exercises/verify/` with Python.
 
-See each task's README for instructions and requirements.
+## Important evidence and approval boundaries
+- Timetable inputs and test cases in the repository are synthetic. Process descriptions distinguish file observations, student reports, estimates, and assumptions; they are not a confirmed institutional SOP.
+- Time-saving figures are estimates, not a measured staff time study.
+- The curriculum proposal is based on the listed handbook credit table and job-description notes. Detailed course syllabi, regulations, and external job postings require direct confirmation; do not treat proposed changes as approved.
+- The Semester III credit discrepancy (listed course sum 24 versus printed total 23) is flagged for institutional confirmation.
+- No faculty/graduate feedback should be represented as received unless the feedback record is actually completed.
 
-## Latest repository update
+## Version information
+This ZIP is a working copy of the repository. After replacing the files in the Git working tree and committing/pushing, add the final full commit URL here. Do not claim a release exists until you create and verify it on GitHub.
 
-[Corrected Task 1 evidence log — commit 2e7c294](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/2e7c294)
-
-## Final submission
-
-- **Release:** [HK AI VERSE Round 2 — v1.0.0](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/releases/tag/v1.0.0)
-- **Original submission snapshot:** [Commit 8a5cb313f577e4035f897e242dbde0c9e7099f28](https://github.com/KolluriTejaswini/hk-aiverse-timetable-automation/commit/8a5cb313f577e4035f897e242dbde0c9e7099f28)
